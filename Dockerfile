@@ -1,13 +1,7 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
+RUN apt update && apt install python3 -y  && apt install python3-pip -y
+RUN pip3 install flask
+COPY app.py /opt
+EXPOSE 8080
+CMD ["python3", "/opt/app.py"]
 
-RUN apt-get update -y
-
-RUN apt-get install python -y
-
-RUN apt-get install python-pip -y
-
-RUN pip install flask
-
-COPY app.py /home/app.py
-
-ENTRYPOINT FLASK_APP=/home/app.py flask run --host=0.0.0.0
